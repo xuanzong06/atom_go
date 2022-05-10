@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'validcode.dart';
 
 void main() {
   // 自訂地的Route寫在runApp裡面
@@ -34,8 +36,16 @@ class _DriverInfoState extends State<DriverInfo> {
   //接收來自上一個頁面的值
   final String drivername;
   final String carnumber;
+  TextEditingController _drivernameController = TextEditingController();
+  TextEditingController _carnumberController = TextEditingController();
 
   _DriverInfoState({required this.drivername, required this.carnumber});
+
+  @override
+  void initState() {
+    _drivernameController.text = drivername;
+    _carnumberController.text = carnumber;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,15 +57,39 @@ class _DriverInfoState extends State<DriverInfo> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-              child: Text('Editing...'),
+            Row(
+              children: [
+                Text('司機名稱：'),
+                Flexible(
+                  //使用Flexible Widget，避免TextField太寬，畫面無法呈現結果
+                  child: TextField(
+                    controller: _drivernameController,
+                    decoration: InputDecoration(
+                      border: UnderlineInputBorder(),
+                      hintText: '司機名稱',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Text('駕駛車號：'),
+                Flexible(
+                  child: TextField(
+                    controller: _carnumberController,
+                    decoration: InputDecoration(
+                      border: UnderlineInputBorder(),
+                      hintText: '駕駛車號',
+                    ),
+                  ),
+                ),
+              ],
             ),
             OutlinedButton(
               onPressed: () {},
               child: Text('編輯'),
             ),
-            Text(drivername),
-            Text(carnumber),
           ],
         ),
       ),
@@ -136,8 +170,19 @@ class _LoginPageState extends State<LoginPage> {
   //宣告參數
   TextEditingController _account = TextEditingController();
   TextEditingController _password = TextEditingController();
+  TextEditingController _code = TextEditingController();
   String _result1 = "";
   String _result2 = "";
+  String _validcode = "";
+  String _loginResult = "";
+
+  String validcode() {
+    //亂數產生
+    int validcode = Random().nextInt(999999);
+    _validcode = validcode.toString();
+    print("CREATE!!!!!!!!!!!: " + validcode.toString());
+    return validcode.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,6 +214,33 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(50.0, 10.0, 0.0, 0.0),
+                    child: Container(
+                      width: 175.0,
+                      child: TextField(
+                        controller: _code,
+                        decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
+                          hintText: '請輸入驗證碼',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 50.0, 0.0),
+                  child: Container(
+                    child: HBCheckCode(
+                        code: validcode(), backgroundColor: Colors.amber),
+                  ),
+                ),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 0.0),
               child: OutlinedButton(
@@ -179,8 +251,9 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text('送出'),
               ),
             ),
-            Text(_result1),
-            Text(_result2),
+            Text(_loginResult),
+            // Text(_result1),
+            // Text(_result2),
           ],
         ),
       ),
@@ -190,10 +263,19 @@ class _LoginPageState extends State<LoginPage> {
   _loginTx() {
     String account = _account.text;
     String password = _password.text;
+    String code = _code.text;
     if (account == "" || password == "") {
       //驗證沒輸入的提示，請參考文章：https://stackoverflow.com/questions/53424916/textfield-validation-in-flutter
-    } else {
+    } else if (_validcode == _code.text) {
+      print("_validcode == _code.text");
       loginTx(_account.text, _password.text);
+      setState(() {
+        _loginResult = "登入成功";
+      });
+    } else {
+      setState(() {
+        _loginResult = "登入失敗，請檢查帳號密碼及輸入的驗證碼";
+      });
     }
   }
 
@@ -216,10 +298,10 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           //使用setState去改變畫面的值
           // print(resultList[0]); //司機姓名
-          _result1 = "司機姓名 : " + resultList[0]; //目前無法接到資料時，直接改變畫面的value
+          _result1 = resultList[0]; //目前無法接到資料時，直接改變畫面的value
           // print("司機姓名：" + _result1);
           // print(resultList[1]); //駕駛車號
-          _result2 = "司機姓名 : " + resultList[1]; //目前無法接到資料時，直接改變畫面的value
+          _result2 = resultList[1]; //目前無法接到資料時，直接改變畫面的value
           // print("駕駛車號：" + _result2);
         });
 
