@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'validcode.dart';
+import 'package:intl/intl.dart';
+import 'package:marquee/marquee.dart';
 
 void main() {
   // 自訂地的Route寫在runApp裡面
@@ -16,8 +18,174 @@ void main() {
       '/login': (context) => const LoginPage(),
       '/Lobby': (context) => Lobby(drivername: '', carnumber: ''),
       '/DriverInfo': (context) => DriverInfo(drivername: '', carnumber: ''),
+      '/PunchPage': (context) => const PunchPage(),
+      '/EmployeeSalary': (context) => const EmployeeSalary(),
+      '/MaruqeeTest' : (context) => const MarquessTest(),
     },
   ));
+}
+
+//跑馬燈測試
+class MarquessTest extends StatefulWidget {
+  const MarquessTest({Key? key}) : super(key: key);
+
+  @override
+  _MarquessTestState createState() => _MarquessTestState();
+}
+
+class _MarquessTestState extends State<MarquessTest> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('跑馬燈測試'),
+        ),
+        body: ListView(
+          padding: EdgeInsets.only(top: 5.0),
+          children: [
+            _buildSimpleMarquee(),
+          ].map(_wrapWithStuff).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+Widget _buildSimpleMarquee(){
+  bool _useRtlText = false;
+  return Marquee(
+    key: Key("$_useRtlText"),
+    text: !_useRtlText
+        ? '這是跑馬燈測試中會顯示的文字                                                  '
+        : 'פעם היה ילד אשר סיפר סיפור על ילד:"',
+    velocity: 50.0,
+  );
+}
+
+Widget _wrapWithStuff(Widget child) { //在ListView中呼叫這個finction，將自定義Widget融入到ListView中
+  return Padding(
+    padding: EdgeInsets.all(16.0),
+    child: Container(height: 20.0, color: Colors.white, child: child),
+  );
+}
+
+class EmployeeSalary extends StatefulWidget {
+  const EmployeeSalary({Key? key}) : super(key: key);
+
+  @override
+  _EmployeeSalaryState createState() => _EmployeeSalaryState();
+}
+
+class _EmployeeSalaryState extends State<EmployeeSalary> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('薪資訊息'),
+        ),
+        body: Column(
+          children: [
+            Container(
+              child: Text('薪資頁面訊息建立中...'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PunchPage extends StatefulWidget {
+  const PunchPage({Key? key}) : super(key: key);
+
+  @override
+  _PunchPageState createState() => _PunchPageState();
+}
+
+class _PunchPageState extends State<PunchPage> {
+  // var nowtime = DateTime.now();
+  var nowtime = DateFormat('yyyy/MM/dd').format(DateTime.now()).toString();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('打卡'),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            //比例呈現的範例
+            Expanded(
+              flex: 5,
+              child: Container(
+                // color: Colors.green,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        OutlinedButton(
+                          onPressed: () {},
+                          child: Text('上班打卡'),
+                        ),
+                        Padding(padding: EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 0.0),
+                          child: Text('今天日期：' + nowtime),
+                        ),
+                        Padding(padding: EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 0.0),
+                          child: Text('上班打卡時間：'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            //比例呈現的範例
+            Expanded(
+              flex: 5,
+              child: Container(
+                // color: Colors.green,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        OutlinedButton(
+                          onPressed: () {},
+                          child: Text('下班打卡'),
+                        ),
+                        Padding(padding: EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 0.0),
+                          child: Text('今天日期：' + nowtime),
+                        ),
+                        Padding(padding: EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 0.0),
+                          child: Text('下班打卡時間：'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            //比例呈現的範例 END
+            // OutlinedButton(
+            //   onPressed: () {
+            //   },
+            //   child: Text('上班打卡'),
+            // ),
+            // OutlinedButton(
+            //   onPressed: () {
+            //   },
+            //   child: Text('下班打卡'),
+            // ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class DriverInfo extends StatefulWidget {
@@ -116,13 +284,6 @@ class _LobbyState extends State<Lobby> {
 
   _LobbyState({required this.drivername, required this.carnumber});
 
-  // @override
-  // void initState(){
-  //   setState(() {
-  //
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -133,7 +294,7 @@ class _LobbyState extends State<Lobby> {
         body: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OutlinedButton(
                   onPressed: () {
@@ -149,6 +310,72 @@ class _LobbyState extends State<Lobby> {
                     );
                   },
                   child: Text('司機個人資料維護'),
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/PunchPage');
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => DriverInfo(
+                    //       drivername: drivername,
+                    //       carnumber: carnumber,
+                    //     ),
+                    //   ),
+                    // );
+                  },
+                  child: Text('打  卡  功  能'),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/EmployeeSalary');
+                  },
+                  child: Text('薪資查詢'),
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/EmployeeSalary');
+                  },
+                  child: Text('... '),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/EmployeeSalary');
+                  },
+                  child: Text('司機定位查詢'),
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/EmployeeSalary');
+                  },
+                  child: Text('系統資訊'),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/MaruqeeTest');
+                  },
+                  child: Text('跑馬燈'),
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/EmployeeSalary');
+                  },
+                  child: Text('...'),
                 ),
               ],
             ),
@@ -236,7 +463,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.fromLTRB(0.0, 10.0, 50.0, 0.0),
                   child: Container(
                     child: HBCheckCode(
-                        code: validcode(), backgroundColor: Colors.amber),
+                        code: validcode(), backgroundColor: Colors.black),
                   ),
                 ),
               ],
@@ -315,10 +542,10 @@ class _LoginPageState extends State<LoginPage> {
               context,
               MaterialPageRoute(
                   builder: (context) => Lobby(
-                        drivername: _result1,
-                        carnumber: _result2,
-                      )),
-              (route) => false);
+                    drivername: _result1,
+                    carnumber: _result2,
+                  )),
+                  (route) => false);
         } else {}
       } else {
         print('error');
