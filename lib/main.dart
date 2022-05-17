@@ -498,76 +498,149 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    getAppVersion();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Login Page'),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 0.0),
-              child: TextField(
-                controller: _account,
-                decoration: InputDecoration(
-                  border: UnderlineInputBorder(),
-                  hintText: '請輸入帳號',
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/wallpaper.jpg'), //自己測試背景圖片
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.7), //加上一層透明0.5的黑
+                  BlendMode.dstATop //混合模式，放到上面去
+                  ),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                width: 150,
+                height: 150,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  // color: Colors.teal,
+                  image: DecorationImage(
+                    image: AssetImage('assets/seastco_icon.png'),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(1000.0),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 0.0),
-              child: TextField(
-                controller: _password,
-                decoration: InputDecoration(
-                  border: UnderlineInputBorder(),
-                  hintText: '請輸入密碼',
-                ),
+              SizedBox(
+                height: 80,
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(50.0, 10.0, 0.0, 0.0),
-                    child: Container(
-                      width: 175.0,
+              Container(
+                margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                height: 325.0,
+                color: Color.fromRGBO(255, 255, 255, 0.5),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(50.0, 30.0, 50.0, 0.0),
                       child: TextField(
-                        controller: _code,
+                        textAlign: TextAlign.center,
+                        controller: _account,
                         decoration: InputDecoration(
-                          border: UnderlineInputBorder(),
-                          hintText: '請輸入驗證碼',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'USERNAME',
                         ),
                       ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 0.0),
+                      child: TextField(
+                        textAlign: TextAlign.center,
+                        controller: _password,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'PASSWORD',
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(50.0, 10.0, 0.0, 0.0),
+                            child: Container(
+                              width: 175.0,
+                              child: TextField(
+                                textAlign: TextAlign.center,
+                                controller: _code,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0),),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  hintText: '請輸入驗證碼',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(0.0, 10.0, 50.0, 0.0),
+                          child: Container(
+                            child: HBCheckCode(
+                                code: validcode(),
+                                backgroundColor: Colors.black),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 0.0),
+                      child: OutlinedButton(
+                        onPressed: () {
+                          //取得結果改變Text內容，要用setState
+                          _loginTx();
+                        },
+                        child: Text(
+                          'LOGIN',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: Colors.grey[800],
+                          minimumSize: const Size(200, 50),
+                          shape: StadiumBorder(),
+                          side: BorderSide(
+                            width: 0,
+                            color: Colors.green,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(_loginResult),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 50.0, 0.0),
-                  child: Container(
-                    child: HBCheckCode(
-                        code: validcode(), backgroundColor: Colors.black),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 0.0),
-              child: OutlinedButton(
-                onPressed: () {
-                  //取得結果改變Text內容，要用setState
-                  _loginTx();
-                },
-                child: Text('送出'),
               ),
-            ),
-            Text(_loginResult),
-            // Text(_result1),
-            // Text(_result2),
-          ],
+
+              // Text(_result1),
+              // Text(_result2),
+            ],
+          ),
         ),
       ),
     );
@@ -640,57 +713,11 @@ class _LoginPageState extends State<LoginPage> {
       print('error : ' + e.toString());
     }
   }
-}
 
-//首頁（公司logo/與gif動畫圖放入）
-class WelcomePage extends StatefulWidget {
-  //app開始顯示公司logo 或 gif動畫
-  const WelcomePage({Key? key}) : super(key: key);
-
-  @override
-  State<WelcomePage> createState() => _WelcomePageState();
-}
-
-class _WelcomePageState extends State<WelcomePage> {
-  @override
-  void initState() {
-    super.initState();
-    getAppVersion();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    //用參數的方式給值
-    String showtext = "Company Welcome Page";
-
-    // 設置timer 時間到的時候自動切換頁面
-    // 這個方法不能轉畫面，有錯誤；開始學習使用routes切換頁面
-    // Timer(const Duration(seconds: 3), () {
-    //   print("3秒到");
-    //   // Navigator.pushNamed(context, '/login');
-    //
-    //   Navigator.of(context)
-    //       .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-    // });
-
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              child: Center(
-                child: Text('$showtext'),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
+  //檢查版本更新與跳出警告視窗
   void _showDialog(BuildContext context) {
     showDialog(
+      barrierDismissible: false, //禁止使用者觸控其他地方以關閉訊息提示
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -700,8 +727,9 @@ class _WelcomePageState extends State<WelcomePage> {
             new FlatButton(
               child: new Text("OK"),
               onPressed: () {
-                LaunchReview.launch(androidAppId: "com.seachaunt.seastco",
-                    // iOSAppId: "585027354"
+                LaunchReview.launch(
+                  androidAppId: "com.seachaunt.seastco",
+                  // iOSAppId: "585027354"
                 );
               },
             ),
@@ -753,4 +781,144 @@ class _WelcomePageState extends State<WelcomePage> {
       return "not ok";
     }
   }
+}
+
+//首頁（公司logo/與gif動畫圖放入）
+class WelcomePage extends StatefulWidget {
+  //app開始顯示公司logo 或 gif動畫
+  const WelcomePage({Key? key}) : super(key: key);
+
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  @override
+  void initState() {
+    super.initState();
+    // getAppVersion();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //用參數的方式給值
+    String showtext = "Company Welcome Page";
+
+    // 設置timer 時間到的時候自動切換頁面
+    // 這個方法不能轉畫面，有錯誤；開始學習使用routes切換頁面
+    Timer(const Duration(seconds: 3), () {
+      print("3秒到");
+      // Navigator.pushNamed(context, '/login');
+
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+    });
+
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/wallpaper.jpg'), //自己測試背景圖片
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.5), //加上一層透明0.5的黑
+                  BlendMode.dstATop //混合模式，放到上面去
+                  ),
+            ),
+          ),
+          child: Center(
+            child: Text('$showtext'),
+          ),
+        ),
+      ),
+    );
+
+    // return MaterialApp(
+    //   home: Scaffold(
+    //     body: Column(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         Container(
+    //           decoration: BoxDecoration(
+    //             image: DecorationImage(
+    //               image: AssetImage('assets/wallpaper.jpg'),
+    //               fit: BoxFit.cover,
+    //             ),
+    //           ),
+    //           child: Center(
+    //             child: Text('$showtext'),
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
+  }
+
+// void _showDialog(BuildContext context) {
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         title: new Text("新版本發佈"),
+//         content: new Text("請前往商店更新"),
+//         actions: <Widget>[
+//           new FlatButton(
+//             child: new Text("OK"),
+//             onPressed: () {
+//               LaunchReview.launch(
+//                 androidAppId: "com.seachaunt.seastco",
+//                 // iOSAppId: "585027354"
+//               );
+//             },
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }
+//
+// Future<String> getAppVersion() async {
+//   //先取得App的資訊
+//   PackageInfo _packageInfo = PackageInfo(
+//     appName: 'Unknown',
+//     packageName: 'Unknown',
+//     version: 'Unknown',
+//     buildNumber: 'Unknown',
+//     buildSignature: 'Unknown',
+//   );
+//   final info = await PackageInfo.fromPlatform();
+//   setState(() {
+//     _packageInfo = info;
+//   });
+//
+//   print(_packageInfo.appName);
+//   print(_packageInfo.version);
+//
+//   try {
+//     var map = Map<String, dynamic>();
+//     map['action'] = "getAppVersion";
+//     map['appname'] = _packageInfo.appName;
+//     final response = await http
+//         .post(Uri.parse('http://192.168.31.167:8888/atom.php'), body: map);
+//     print(response.body);
+//     // map[''] = "";
+//     if (response.body.toString() != _packageInfo.version) {
+//       //版本不相同時跳到商店 20220516
+//       //版本更新訊息提示
+//
+//       setState(() {
+//         _showDialog(context);
+//       });
+//       // LaunchReview.launch(androidAppId: "com.seachaunt.seastco",
+//       //     // iOSAppId: "585027354"
+//       // );
+//     }
+//
+//     return "ok";
+//   } catch (Exception) {
+//     return "not ok";
+//   }
+// }
 }
