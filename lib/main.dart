@@ -24,15 +24,62 @@ void main() {
       '/EmployeeSalary': (context) => const EmployeeSalary(),
       '/MaruqeeTest': (context) => const MarquessTest(),
       '/AppInfomations': (context) => const AppInfomations(),
+      '/DemoP': (context) => const DemoP(),
     },
   ));
 }
 
-//自己設計的程式更新邏輯
-void CheckVersion() {
-  //先檢查程式的版本代號與資料庫的版本代號是否有不同
+//依bro提供之GUI畫面設計
+class DemoP extends StatefulWidget {
+  const DemoP({Key? key}) : super(key: key);
+
+  @override
+  _DemoPState createState() => _DemoPState();
 }
 
+class _DemoPState extends State<DemoP> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Column(
+                  children: [
+                    Container(
+                      color: Colors.grey[300],
+                      child: Row(
+                        children: [
+                          Text('選單'),
+                          Text('打卡功能1'),
+                          Text('打卡功能2'),
+                          Text('三個點'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+
+              ), //全畫面的方法
+
+              Expanded(
+                flex: 7,
+                child: Container(
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+//App資訊
 class AppInfomations extends StatefulWidget {
   const AppInfomations({Key? key}) : super(key: key);
 
@@ -175,7 +222,14 @@ class PunchPage extends StatefulWidget {
 
 class _PunchPageState extends State<PunchPage> {
   // var nowtime = DateTime.now();
-  var nowtime = DateFormat('yyyy/MM/dd').format(DateTime.now()).toString();
+  var nowtime = DateFormat('yyyy/MM/dd HH:mm:ss').format(DateTime.now()).toString();
+
+  void PunchOn(){
+    nowtime = DateFormat('yyyy/MM/dd HH:mm:ss').format(DateTime.now()).toString(); // 取得觸發作業當下的時間
+  }
+
+  void PunchDown(){
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +252,9 @@ class _PunchPageState extends State<PunchPage> {
                     Column(
                       children: [
                         OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           child: Text('上班打卡'),
                         ),
                         Padding(
@@ -507,9 +563,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Login Page'),
-        ),
+        // appBar: AppBar(
+        //   title: Text('Login Page'),
+        // ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -541,9 +597,13 @@ class _LoginPageState extends State<LoginPage> {
                 height: 80,
               ),
               Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Color.fromRGBO(255, 255, 255,
+                      0.5), //如果今天我有定義decoration屬性，color屬性要從Container層級移到BoxDecoration裡面，不然程式會出錯
+                ),
                 margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                 height: 325.0,
-                color: Color.fromRGBO(255, 255, 255, 0.5),
                 child: Column(
                   children: [
                     Padding(
@@ -589,7 +649,9 @@ class _LoginPageState extends State<LoginPage> {
                                 textAlign: TextAlign.center,
                                 controller: _code,
                                 decoration: InputDecoration(
-                                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0),),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
                                   filled: true,
                                   fillColor: Colors.white,
                                   hintText: '請輸入驗證碼',
@@ -652,7 +714,8 @@ class _LoginPageState extends State<LoginPage> {
     String code = _code.text;
     if (account == "" || password == "") {
       //驗證沒輸入的提示，請參考文章：https://stackoverflow.com/questions/53424916/textfield-validation-in-flutter
-    } else if (_validcode == _code.text) {
+    // } else if (_validcode == _code.text) {
+    } else if (true) { //開發中，跳過驗證碼的方法
       print("_validcode == _code.text");
       loginTx(_account.text, _password.text);
       setState(() {
@@ -811,7 +874,8 @@ class _WelcomePageState extends State<WelcomePage> {
       // Navigator.pushNamed(context, '/login');
 
       Navigator.of(context)
-          .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+          .pushNamedAndRemoveUntil('/DemoP', (Route<dynamic> route) => false);
+      // .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
     });
 
     return MaterialApp(
@@ -827,98 +891,31 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
             ),
           ),
-          child: Center(
-            child: Text('$showtext'),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 100.0,
+              ),
+              Container(
+                width: 150,
+                height: 150,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  // color: Colors.teal,
+                  image: DecorationImage(
+                    image: AssetImage('assets/seastco_icon.png'),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(1000.0),
+                ),
+              ),
+              Center(
+                child: Text('$showtext'),
+              ),
+            ],
           ),
         ),
       ),
     );
-
-    // return MaterialApp(
-    //   home: Scaffold(
-    //     body: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: [
-    //         Container(
-    //           decoration: BoxDecoration(
-    //             image: DecorationImage(
-    //               image: AssetImage('assets/wallpaper.jpg'),
-    //               fit: BoxFit.cover,
-    //             ),
-    //           ),
-    //           child: Center(
-    //             child: Text('$showtext'),
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
-
-// void _showDialog(BuildContext context) {
-//   showDialog(
-//     context: context,
-//     builder: (BuildContext context) {
-//       return AlertDialog(
-//         title: new Text("新版本發佈"),
-//         content: new Text("請前往商店更新"),
-//         actions: <Widget>[
-//           new FlatButton(
-//             child: new Text("OK"),
-//             onPressed: () {
-//               LaunchReview.launch(
-//                 androidAppId: "com.seachaunt.seastco",
-//                 // iOSAppId: "585027354"
-//               );
-//             },
-//           ),
-//         ],
-//       );
-//     },
-//   );
-// }
-//
-// Future<String> getAppVersion() async {
-//   //先取得App的資訊
-//   PackageInfo _packageInfo = PackageInfo(
-//     appName: 'Unknown',
-//     packageName: 'Unknown',
-//     version: 'Unknown',
-//     buildNumber: 'Unknown',
-//     buildSignature: 'Unknown',
-//   );
-//   final info = await PackageInfo.fromPlatform();
-//   setState(() {
-//     _packageInfo = info;
-//   });
-//
-//   print(_packageInfo.appName);
-//   print(_packageInfo.version);
-//
-//   try {
-//     var map = Map<String, dynamic>();
-//     map['action'] = "getAppVersion";
-//     map['appname'] = _packageInfo.appName;
-//     final response = await http
-//         .post(Uri.parse('http://192.168.31.167:8888/atom.php'), body: map);
-//     print(response.body);
-//     // map[''] = "";
-//     if (response.body.toString() != _packageInfo.version) {
-//       //版本不相同時跳到商店 20220516
-//       //版本更新訊息提示
-//
-//       setState(() {
-//         _showDialog(context);
-//       });
-//       // LaunchReview.launch(androidAppId: "com.seachaunt.seastco",
-//       //     // iOSAppId: "585027354"
-//       // );
-//     }
-//
-//     return "ok";
-//   } catch (Exception) {
-//     return "not ok";
-//   }
-// }
 }
