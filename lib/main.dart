@@ -125,7 +125,7 @@ class _DemoPState extends State<DemoP> {
                 ),
               ), //全畫面的方法
               Expanded(
-                flex: 7,
+                flex: 6, //因為增加bottonNavigationBar 從7降低為6
                 child: Container(
                   color: Colors.white,
                   child: Column(
@@ -186,7 +186,6 @@ class _DemoPState extends State<DemoP> {
                                           // crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Column(
-
                                               children: [
                                                 Text(
                                                   '未取',
@@ -195,14 +194,16 @@ class _DemoPState extends State<DemoP> {
                                               ],
                                             ),
                                             Column(
-                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
                                               children: [
                                                 Text(
                                                   '30',
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
-                                                      fontSize: 50.0,
-                                                      fontWeight: FontWeight.bold),
+                                                    fontSize: 100.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -225,9 +226,9 @@ class _DemoPState extends State<DemoP> {
                                                 '02',
                                                 textAlign: TextAlign.right,
                                                 style: TextStyle(
-                                                    fontSize: 50.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                  fontSize: 100.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -272,9 +273,9 @@ class _DemoPState extends State<DemoP> {
                                                 '09',
                                                 textAlign: TextAlign.right,
                                                 style: TextStyle(
-                                                    fontSize: 50.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                  fontSize: 100.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -296,9 +297,9 @@ class _DemoPState extends State<DemoP> {
                                                 '23',
                                                 textAlign: TextAlign.right,
                                                 style: TextStyle(
-                                                    fontSize: 50.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                  fontSize: 100.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -316,6 +317,49 @@ class _DemoPState extends State<DemoP> {
                           ),
                         ],
                       ),
+                      Row(
+                        //因為範例提供之分割線會無限延伸，所以我想到用Expanded包住，來呈現範例的外觀
+                        children: [
+                          Expanded(
+                            child: Container(),
+                            flex: 1,
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Text(
+                                  '未讀取',
+                                  textAlign: TextAlign.left,
+                                ),
+                                HorizontalLine(),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        '09:00',
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        '顯示的文字訊息',
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            flex: 8,
+                          ),
+                          Expanded(
+                            child: Container(),
+                            flex: 1,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -323,6 +367,33 @@ class _DemoPState extends State<DemoP> {
             ],
           ),
         ),
+        bottomNavigationBar:
+            BottomNavigationBar(items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'Business',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'School',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.star),
+            label: 'qq1',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'qq2',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'qq3',
+          ),
+        ]),
       ),
     );
   }
