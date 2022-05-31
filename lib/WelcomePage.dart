@@ -31,7 +31,7 @@ class _WelcomePageState extends State<WelcomePage> {
       // Navigator.pushNamed(context, '/login');
 
       Navigator.of(context)
-          .pushNamedAndRemoveUntil('/DemoP', (Route<dynamic> route) => false);
+          .pushNamedAndRemoveUntil('/bottomNavigationbarTest', (Route<dynamic> route) => false);
       // .pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
     });
 

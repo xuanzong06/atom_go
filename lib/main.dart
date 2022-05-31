@@ -19,6 +19,7 @@ import 'MarquessTest.dart';
 import 'LoginPage.dart';
 import 'Lobby.dart';
 import 'DriverInfo.dart';
+import 'bottomNavigationbarTest.dart';
 
 void main() {
   // 自訂地的Route寫在runApp裡面
@@ -35,6 +36,7 @@ void main() {
       '/MaruqeeTest': (context) => const MarquessTest(),
       '/AppInfomations': (context) => const AppInfomations(),
       '/DemoP': (context) => const DemoP(),
+      '/bottomNavigationbarTest': (context) => const MyStatefulWidget(),
     },
   ));
 }

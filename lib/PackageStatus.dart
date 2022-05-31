@@ -18,17 +18,16 @@ class HorizontalLine extends StatelessWidget {
     return Container(width: dashedWidth, height: dashedHeight, color: color);
   }
 }
-//
 
-//依bro提供之GUI畫面設計
-class DemoP extends StatefulWidget {
-  const DemoP({Key? key}) : super(key: key);
+//
+class PackageStatus extends StatefulWidget {
+  const PackageStatus({Key? key}) : super(key: key);
 
   @override
-  _DemoPState createState() => _DemoPState();
+  _PackageStatusState createState() => _PackageStatusState();
 }
 
-class _DemoPState extends State<DemoP> {
+class _PackageStatusState extends State<PackageStatus> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -101,7 +100,7 @@ class _DemoPState extends State<DemoP> {
                             child: Column(
                               children: [
                                 Text(
-                                  '葉俊億',
+                                  '包裹運送查詢',
                                   style: TextStyle(
                                     fontSize: 30.0,
                                   ),
@@ -116,19 +115,7 @@ class _DemoPState extends State<DemoP> {
                             child: Column(
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(right: 0.0),
-                                  width: 150,
-                                  height: 150,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    // color: Colors.teal,
-                                    image: DecorationImage(
-                                      image:
-                                          AssetImage('assets/seastco_icon.png'),
-                                      fit: BoxFit.cover,
-                                    ),
-                                    borderRadius: BorderRadius.circular(1000.0),
-                                  ),
+                                  
                                 ),
                               ],
                             ),
