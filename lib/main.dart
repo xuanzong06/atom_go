@@ -20,6 +20,7 @@ import 'LoginPage.dart';
 import 'Lobby.dart';
 import 'DriverInfo.dart';
 import 'bottomNavigationbarTest.dart';
+import 'PackageStatus.dart';
 
 void main() {
   // 自訂地的Route寫在runApp裡面
@@ -35,8 +36,9 @@ void main() {
       '/EmployeeSalary': (context) => const EmployeeSalary(),
       '/MaruqeeTest': (context) => const MarquessTest(),
       '/AppInfomations': (context) => const AppInfomations(),
-      '/DemoP': (context) => const DemoP(),
+      '/DemoP': (context) => const MyStatefulWidget2(),
       '/bottomNavigationbarTest': (context) => const MyStatefulWidget(),
+      '/PackageStatus': (context) => const PackageStatus(),
     },
   ));
 }

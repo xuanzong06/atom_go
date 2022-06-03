@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'DemoP.dart';
 import 'bottomNavigationbarTest.dart';
+import 'FrontPage.dart';
+import 'PackageDetails.dart';
 
 void main() => runApp(const MyApp());
 
@@ -32,17 +34,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    DemoP(
+    FrontPage(
     ),
     PackageStatus(
     ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
+    PackageDetails(
     ),
-    Text(
-      'Index 3: Text',
-      style: optionStyle,
+    MyStatefulWidget2(
     ),
     Text(
       'Index 4: Text',
