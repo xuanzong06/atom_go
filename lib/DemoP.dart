@@ -39,78 +39,54 @@ class _MyStatefulWidget2State extends State<MyStatefulWidget2>
     return Scaffold(
       appBar: AppBar(
         title: const Text('TabBar Widget'),
-
       ),
       body: Padding(
         padding: EdgeInsets.all(0),
-        child: Column(children: [
-          Container(
-            height: 40,
-            // width: 400,
-            color: Colors.teal,
-            child: TabBar(
-              controller: _tabController,
-              tabs: const <Widget>[
-                Tab(
-                  // icon: Icon(Icons.cloud_outlined),
-                  text: '送件資料',
-                ),
-                Tab(
-                  // icon: Icon(Icons.beach_access_sharp),
-                  text: '取件資料',
-                ),
-                Tab(
-                  // icon: Icon(Icons.brightness_5_sharp),
-                  text: '上傳資料',
-                ),
-              ],
+        child: Column(
+          children: [
+            Container(
+              height: 40,
+              // width: 400,
+              color: Colors.teal,
+              child: TabBar(
+                controller: _tabController,
+                tabs: const <Widget>[
+                  Tab(
+                    // icon: Icon(Icons.cloud_outlined),
+                    text: '送件資料',
+                  ),
+                  Tab(
+                    // icon: Icon(Icons.beach_access_sharp),
+                    text: '取件資料',
+                  ),
+                  Tab(
+                    // icon: Icon(Icons.brightness_5_sharp),
+                    text: '上傳資料',
+                  ),
+                ],
+              ),
             ),
-          ),
-          // TabBar(
-          //   controller: _tabController,
-          //   tabs: const <Widget>[
-          //     Tab(
-          //       icon: Icon(Icons.cloud_outlined),
-          //     ),
-          //     Tab(
-          //       icon: Icon(Icons.beach_access_sharp),
-          //     ),
-          //     Tab(
-          //       icon: Icon(Icons.brightness_5_sharp),
-          //     ),
-          //   ],
-          // ),
-          Container(
-            color: Colors.yellowAccent,
-            height: 50,
-            width: 50,
-            child: TabBarView(controller: _tabController,children: const <Widget>[
-              Center(
-                child: Text("It's cloudy here"),
+            Container(
+              color: Colors.yellowAccent,
+              height: 50,
+              width: 50,
+              child: TabBarView(
+                controller: _tabController,
+                children: const <Widget>[
+                  Center(
+                    child: Text("It's cloudy here"),
+                  ),
+                  Center(
+                    child: Text("It's rainy here"),
+                  ),
+                  Center(
+                    child: Text("It's sunny here"),
+                  ),
+                ],
               ),
-              Center(
-                child: Text("It's rainy here"),
-              ),
-              Center(
-                child: Text("It's sunny here"),
-              ),
-            ],),
-          ),
-          // TabBarView(
-          //   controller: _tabController,
-          //     children: const <Widget>[
-          //     Center(
-          //       child: Text("It's cloudy here"),
-          //     ),
-          //     Center(
-          //       child: Text("It's rainy here"),
-          //     ),
-          //     Center(
-          //       child: Text("It's sunny here"),
-          //     ),
-          //   ],
-          // ),
-        ],),
+            ),
+          ],
+        ),
       ),
     );
   }

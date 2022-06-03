@@ -1,3 +1,4 @@
+import 'package:atom_go/HorizontalLine.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -8,9 +9,19 @@ class PackageDetails extends StatefulWidget {
   _PackageDetailsState createState() => _PackageDetailsState();
 }
 
-class _PackageDetailsState extends State<PackageDetails> {
+class _PackageDetailsState extends State<PackageDetails>
+    with TickerProviderStateMixin {
+  // with TickerProviderStateMixin 是為了controller vsync
   var monthstr = DateFormat('MM').format(DateTime.now()).toString();
   var daystr = DateFormat('dd').format(DateTime.now()).toString();
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,16 +105,36 @@ class _PackageDetailsState extends State<PackageDetails> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            //這裡開始修改
-                            Container(
-                              child: TabBar(
-                                labelColor: Colors.green,
-                                unselectedLabelColor: Colors.black,
-                                tabs: [
-                                  Tab(text: 'Tab 1'),
-                                  Tab(text: 'Tab 2'),
-                                  Tab(text: 'Tab 3'),
-                                  Tab(text: 'Tab 4'),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 30,
+                                    width: 300,
+                                    // color: Colors.teal,
+                                    child: TabBar(
+                                      labelColor: Colors.black,
+                                      //這裡定義文字顏色
+                                      indicatorColor: Colors.red,
+                                      //底線顏色，看起來要寫邏輯判斷！！
+                                      controller: _tabController,
+                                      tabs: const <Widget>[
+                                        Tab(
+                                          // icon: Icon(Icons.cloud_outlined),
+                                          text: '送件資料',
+                                        ),
+                                        Tab(
+                                          // icon: Icon(Icons.beach_access_sharp),
+                                          text: '取件資料',
+                                        ),
+                                        Tab(
+                                          // icon: Icon(Icons.brightness_5_sharp),
+                                          text: '上傳資料',
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -116,7 +147,104 @@ class _PackageDetailsState extends State<PackageDetails> {
                 Expanded(
                   flex: 6, //因為增加bottonNavigationBar 從7降低為6
                   child: ListView(
-                    children: [],
+                    children: [
+                      Container(
+                        color: Colors.yellowAccent,
+                        height: 200,
+                        width: 50,
+                        child: TabBarView(
+                          controller: _tabController,
+                          children: <Widget>[
+                            Center(
+                              child: Column(
+                                children: [
+                                  Text("設計送件資料"),
+                                ],
+                              ),
+                            ),
+                            Center(
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(),
+                                  ),
+                                  Expanded(
+                                    flex: 8,
+                                    child: Column(
+                                      children: [
+                                        Text("取件資料"),
+                                        HorizontalLine(),
+                                        Text('data'),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Center(
+                              child: Column(
+                                children: [
+                                  Text("設計上傳資料"),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        color: Colors.teal,
+                        height: 300,
+                        width: 50,
+                        child: TabBarView(
+                          controller: _tabController,
+                          children: <Widget>[
+                            Center(
+                              child: Column(
+                                children: [
+                                  Text("設計送件資料"),
+                                ],
+                              ),
+                            ),
+                            Center(
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(),
+                                  ),
+                                  Expanded(
+                                    flex: 8,
+                                    child: Column(
+                                      children: [
+                                        Text("備註"),
+                                        HorizontalLine(),
+                                        Text('data'),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Center(
+                              child: Column(
+                                children: [
+                                  Text("設計上傳資料"),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
