@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'HorizontalLine.dart';
 
 class FrontPage extends StatefulWidget {
@@ -11,6 +12,12 @@ class FrontPage extends StatefulWidget {
 class _FrontPageState extends State<FrontPage> {
   final _scaffoldKey =
       GlobalKey<ScaffoldState>(); //自定義IconButton.menu 需要這個值 1/3
+
+  bool punchStart = false;
+  bool punchEnd = false;
+  String punchStartStr = "未打卡";
+  String punchEndStr = "未打卡";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -64,17 +71,27 @@ class _FrontPageState extends State<FrontPage> {
                                     //自定義IconButton.menu 需要這個值 3/3
                                     icon: Icon(Icons.menu),
                                   ),
-                                  Text('打卡功能1'),
+                                  Text(punchStartStr),
                                   Switch(
-                                      value: false,
+                                      value: punchStart,
                                       onChanged: (value) {
-                                        value = true;
+                                        if(punchStart == false){ //只有false的時候才有功能
+                                          setState(() {
+                                            punchStart = !punchStart;
+                                            punchStartStr = DateFormat('HH:mm').format(DateTime.now()).toString();
+                                          });
+                                        }
                                       }),
-                                  Text('打卡功能2'),
+                                  Text(punchEndStr),
                                   Switch(
-                                      value: false,
+                                      value: punchEnd,
                                       onChanged: (value) {
-                                        value = true;
+                                        if(punchEnd == false){ //只有false的時候才有功能
+                                          setState(() {
+                                            punchEnd = !punchEnd;
+                                            punchEndStr = DateFormat('HH:mm').format(DateTime.now()).toString();
+                                          });
+                                        }
                                       }),
                                   IconButton(
                                     onPressed: () {},
