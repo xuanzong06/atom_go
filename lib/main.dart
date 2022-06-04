@@ -22,7 +22,15 @@ import 'DriverInfo.dart';
 import 'bottomNavigationbarTest.dart';
 import 'PackageStatus.dart';
 
+import 'package:flutter/services.dart';
+
 void main() {
+  //強制畫面直立，不要轉向
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   // 自訂地的Route寫在runApp裡面
   runApp(MaterialApp(
     title: 'Named Routes Demo',

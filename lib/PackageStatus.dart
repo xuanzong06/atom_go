@@ -63,7 +63,7 @@ class _PackageStatusState extends State<PackageStatus> {
                                   Text(
                                     '包裹運送查詢',
                                     style: TextStyle(
-                                      fontSize: 30.0,
+                                      fontSize: 21.0,
                                     ),
                                   ),
                                   Text('司機編號：250'),
@@ -107,7 +107,7 @@ class _PackageStatusState extends State<PackageStatus> {
                                       // color: Colors.grey, //因為宣告BoxDecoration，所以要移進去
                                       child: Text(
                                         '12',
-                                        style: TextStyle(fontSize: 20.0),
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -126,7 +126,7 @@ class _PackageStatusState extends State<PackageStatus> {
                                       // color: Colors.grey, //因為宣告BoxDecoration，所以要移進去
                                       child: Text(
                                         '30',
-                                        style: TextStyle(fontSize: 20.0),
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -150,7 +150,7 @@ class _PackageStatusState extends State<PackageStatus> {
                                       // color: Colors.grey, //因為宣告BoxDecoration，所以要移進去
                                       child: Text(
                                         '02',
-                                        style: TextStyle(fontSize: 20.0),
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -174,7 +174,7 @@ class _PackageStatusState extends State<PackageStatus> {
                                       // color: Colors.grey, //因為宣告BoxDecoration，所以要移進去
                                       child: Text(
                                         '09',
-                                        style: TextStyle(fontSize: 20.0),
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -198,7 +198,7 @@ class _PackageStatusState extends State<PackageStatus> {
                                       // color: Colors.grey, //因為宣告BoxDecoration，所以要移進去
                                       child: Text(
                                         '23',
-                                        style: TextStyle(fontSize: 20.0),
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -231,6 +231,7 @@ class _PackageStatusState extends State<PackageStatus> {
                         color: Color(0xFFFFF0D2),
                         shadowColor: Colors.blueAccent,
                         child: Row(
+                          // mainAxisSize: MainAxisSize.max,
                           children: [
                             Container(
                               height: 50.0,
@@ -246,9 +247,12 @@ class _PackageStatusState extends State<PackageStatus> {
                               child: Text('千多/水上'),
                             ),
                             Flexible(
-                              child: Text(
-                                '台中#1343546789',
-                                overflow: TextOverflow.fade,
+                              child: Container(
+                                // padding: EdgeInsets.only(right: 13.0),
+                                child: Text(
+                                  '台中#＃123456789', //我注意到＃井字號後面會直接強制省略
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ),
                           ],
