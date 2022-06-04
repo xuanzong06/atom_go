@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'KustomDrawer.dart';
 
 class PackageStatus extends StatefulWidget {
   const PackageStatus({Key? key}) : super(key: key);
@@ -9,6 +10,9 @@ class PackageStatus extends StatefulWidget {
 }
 
 class _PackageStatusState extends State<PackageStatus> {
+  final _scaffoldKey =
+  GlobalKey<ScaffoldState>(); //自定義IconButton.menu 需要這個值 1/3
+
   var monthstr = DateFormat('MM').format(DateTime.now()).toString();
   var daystr = DateFormat('dd').format(DateTime.now()).toString();
 
@@ -16,6 +20,11 @@ class _PackageStatusState extends State<PackageStatus> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        resizeToAvoidBottomInset: false, //避免要輸入文字時，鍵盤彈出，底部Widget被往上擠，但除此之外body的設計邏輯也要調整
+        key: _scaffoldKey, //自定義IconButton.menu 需要這個值 2/3
+        drawer: Drawer(
+          child: KustomDrawer(),
+        ),
         body: SafeArea(
           child: Container(
             child: Column(
@@ -27,26 +36,39 @@ class _PackageStatusState extends State<PackageStatus> {
                     child: Column(
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           //使最上排能夠分配距離
                           children: [
                             SafeArea(
                               child: Row(
                                 children: [
-                                  Text('選單'),
-                                  Text('打卡功能1'),
-                                  Switch(
-                                      value: false,
-                                      onChanged: (value) {
-                                        value = true;
-                                      }),
-                                  Text('打卡功能2'),
-                                  Switch(
-                                      value: false,
-                                      onChanged: (value) {
-                                        value = true;
-                                      }),
-                                  Text('三個點'),
+                                  IconButton(
+                                    onPressed: () =>
+                                        _scaffoldKey.currentState?.openDrawer(),
+                                    //自定義IconButton.menu 需要這個值 3/3
+                                    icon: Icon(Icons.menu),
+                                  ),
+                                  Container(
+                                    // color: Colors.white,
+                                    height: 30,
+                                    width: 270,
+                                    // decoration: BoxDecoration(
+                                    //   borderRadius: BorderRadius.circular(50),
+                                    // ),
+                                    // color: Colors.amberAccent,
+                                    child: TextField(
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(30.0),
+                                        ),
+                                        hintText: '請輸入關鍵字',
+                                      ),
+                                      style: TextStyle(
+
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

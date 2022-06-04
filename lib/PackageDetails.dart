@@ -1,4 +1,5 @@
 import 'package:atom_go/HorizontalLine.dart';
+import 'package:atom_go/KustomDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -17,6 +18,9 @@ class _PackageDetailsState extends State<PackageDetails>
 
   late TabController _tabController;
 
+  final _scaffoldKey =
+  GlobalKey<ScaffoldState>(); //自定義IconButton.menu 需要這個值 1/3
+
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
@@ -27,6 +31,8 @@ class _PackageDetailsState extends State<PackageDetails>
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        key: _scaffoldKey, //自定義IconButton.menu 需要這個值 2/3
+        drawer: Drawer(child: KustomDrawer(),),
         body: SafeArea(
           child: Container(
             child: Column(
@@ -38,26 +44,18 @@ class _PackageDetailsState extends State<PackageDetails>
                     child: Column(
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           //使最上排能夠分配距離
                           children: [
                             SafeArea(
                               child: Row(
                                 children: [
-                                  Text('選單'),
-                                  Text('打卡功能1'),
-                                  Switch(
-                                      value: false,
-                                      onChanged: (value) {
-                                        value = true;
-                                      }),
-                                  Text('打卡功能2'),
-                                  Switch(
-                                      value: false,
-                                      onChanged: (value) {
-                                        value = true;
-                                      }),
-                                  Text('三個點'),
+                                  IconButton(
+                                    onPressed: () =>
+                                        _scaffoldKey.currentState?.openDrawer(),
+                                    //自定義IconButton.menu 需要這個值 3/3
+                                    icon: Icon(Icons.menu),
+                                  ),
                                 ],
                               ),
                             ),

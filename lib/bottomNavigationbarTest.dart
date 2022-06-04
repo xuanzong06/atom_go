@@ -5,6 +5,7 @@ import 'DemoP.dart';
 import 'bottomNavigationbarTest.dart';
 import 'FrontPage.dart';
 import 'PackageDetails.dart';
+import 'SearchBarTest.dart';
 
 void main() => runApp(const MyApp());
 
@@ -42,9 +43,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     ),
     MyStatefulWidget2(
     ),
-    Text(
-      'Index 4: Text',
-      style: optionStyle,
+    KustomSearchBar(
     ),
     Text(
       'Index 5: Text',

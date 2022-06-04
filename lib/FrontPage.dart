@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'HorizontalLine.dart';
+import 'KustomDrawer.dart';
 
 class FrontPage extends StatefulWidget {
   const FrontPage({Key? key}) : super(key: key);
@@ -24,29 +25,7 @@ class _FrontPageState extends State<FrontPage> {
       home: Scaffold(
         key: _scaffoldKey, //自定義IconButton.menu 需要這個值 2/3
         drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              Container(
-                height: 100,
-                child: DrawerHeader(
-                  child: Text('導覽列'),
-                  decoration: BoxDecoration(
-                    color: Colors.yellow,
-                  ),
-                ),
-              ),
-
-              ListTile(
-                title: Text('Option1'),
-                onTap: (){},
-              ),
-              ListTile(
-                title: Text('Option1'),
-                onTap: (){},
-              ),
-            ],
-          ),
+          child: KustomDrawer(),
         ),
         body: SafeArea(
           child: Container(
