@@ -1,5 +1,5 @@
-import 'package:atom_go/HorizontalLine.dart';
-import 'package:atom_go/KustomDrawer.dart';
+import 'package:atom_go/GeneralWidget/HorizontalLine.dart';
+import 'package:atom_go/Kustom/KustomDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -19,7 +19,9 @@ class _PackageDetailsState extends State<PackageDetails>
   late TabController _tabController;
 
   final _scaffoldKey =
-  GlobalKey<ScaffoldState>(); //自定義IconButton.menu 需要這個值 1/3
+      GlobalKey<ScaffoldState>(); //自定義IconButton.menu 需要這個值 1/3
+
+  bool deliveryflag = false;
 
   @override
   void initState() {
@@ -29,10 +31,15 @@ class _PackageDetailsState extends State<PackageDetails>
 
   @override
   Widget build(BuildContext context) {
+    String PackageStatusStr = "未送包裹";
+    String MissionDetailStr = "派車日期 ??/?? 客戶名稱 千多ＯＯ千多ＯＯ";
+
     return MaterialApp(
       home: Scaffold(
         key: _scaffoldKey, //自定義IconButton.menu 需要這個值 2/3
-        drawer: Drawer(child: KustomDrawer(),),
+        drawer: Drawer(
+          child: KustomDrawer(),
+        ),
         body: SafeArea(
           child: Container(
             child: Column(
@@ -62,41 +69,45 @@ class _PackageDetailsState extends State<PackageDetails>
                           ],
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Expanded(
-                              //在Row下使用Expanded 可以達到左右
-                              flex: 5,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    '包裹運送查詢',
-                                    style: TextStyle(
-                                      fontSize: 30.0,
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 0, 100, 0),
+                                      child: Text(
+                                        PackageStatusStr,
+                                        style: TextStyle(
+                                          fontSize: 30.0,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Text('司機編號：250'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              flex: 5,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: Text(
-                                      monthstr + "     ",
-                                      style: TextStyle(fontSize: 30),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      child: Switch(
+                                          value: deliveryflag,
+                                          onChanged: (value) {
+                                            if (deliveryflag == false) {
+                                              //只有false的時候才有功能
+                                              setState(() {
+                                                deliveryflag = !deliveryflag;
+                                                // punchStartStr = DateFormat('HH:mm').format(DateTime.now()).toString();
+                                              });
+                                            }
+                                          }),
                                     ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "     " + daystr,
-                                      style: TextStyle(fontSize: 30),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                  ],
+                                ),
+                                Text(
+                                  MissionDetailStr,
+                                  overflow: TextOverflow.fade,
+                                  style: TextStyle(fontSize: 10,),
+                                ),
+                               ],
                             ),
                           ],
                         ),
@@ -156,7 +167,9 @@ class _PackageDetailsState extends State<PackageDetails>
                             Center(
                               child: Column(
                                 children: [
-                                  Text("設計送件資料"),
+                                  Text("取件資料"),
+                                  HorizontalLine(),
+                                  Text('data'),
                                 ],
                               ),
                             ),

@@ -66,6 +66,7 @@ flutter:
   assets: #在這邊註冊圖片資訊
     - assets/seastco_icon.png
     - assets/wallpaper.jpg
+    - assets/liu.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

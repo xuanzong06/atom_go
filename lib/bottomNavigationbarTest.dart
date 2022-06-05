@@ -1,10 +1,10 @@
-import 'package:atom_go/PackageStatus.dart';
+import 'Package/PackageStatus.dart';
 import 'package:flutter/material.dart';
 
 import 'DemoP.dart';
 import 'bottomNavigationbarTest.dart';
 import 'FrontPage.dart';
-import 'PackageDetails.dart';
+import 'Package/PackageDetails.dart';
 import 'SearchBarTest.dart';
 
 void main() => runApp(const MyApp());

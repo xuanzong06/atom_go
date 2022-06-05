@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'HorizontalLine.dart';
-import 'KustomDrawer.dart';
+import 'GeneralWidget/HorizontalLine.dart';
+import 'Kustom/KustomDrawer.dart';
 
 class FrontPage extends StatefulWidget {
   const FrontPage({Key? key}) : super(key: key);
@@ -90,7 +90,7 @@ class _FrontPageState extends State<FrontPage> {
                               child: Column(
                                 children: [
                                   Text(
-                                    '葉俊億',
+                                    '劉思慕',
                                     style: TextStyle(
                                       fontSize: 30.0,
                                     ),
@@ -113,7 +113,7 @@ class _FrontPageState extends State<FrontPage> {
                                       // color: Colors.teal,
                                       image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/seastco_icon.png'),
+                                            'assets/liu.png'),
                                         fit: BoxFit.cover,
                                       ),
                                       borderRadius:
@@ -141,7 +141,6 @@ class _FrontPageState extends State<FrontPage> {
                               //使用Row，背景顏色可以拓展整個區域的畫面
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('相關公告......'),
                                 Text('相關公告......'),
                               ],
                             ),
