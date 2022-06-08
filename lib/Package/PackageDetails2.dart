@@ -3,6 +3,8 @@ import 'package:atom_go/Kustom/KustomDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../DoImagePicker.dart';
+
 class PackageDetails2 extends StatefulWidget {
   const PackageDetails2({Key? key, required this.missioncode}) : super(key: key);
 
@@ -26,9 +28,9 @@ class _PackageDetails2State extends State<PackageDetails2>
   final _scaffoldKey =
       GlobalKey<ScaffoldState>(); //自定義IconButton.menu 需要這個值 1/3
 
-  bool deliveryflag = false;
+  bool deliveryflag = true;
 
-  String switchStatus = "未送";
+  String switchStatusStr = "";
 
   @override
   void initState() {
@@ -42,10 +44,41 @@ class _PackageDetails2State extends State<PackageDetails2>
     String MissionDetailStr = "派車日期 ??/?? 客戶名稱 千多ＯＯ千多ＯＯ";
     var ThemeColor = Color(0xFFFFFFFF); //主題顏色
     var TextColor = Color(0xFFFFFFFF); //文字顏色
+    var SwitchTextColor = Color(0xFFFFFFFF); //Switch文字顏色
+    var ActiveColor = Color(0xFFFFFFFF); //Switch啟動顏色
 
-    if(missioncode == "undelivery"){
+
+    if(missioncode == "unpick"){ //未取
+      ThemeColor = Color(0xFFFCD69B);
+      TextColor = Color(0xFFA86600);
+      SwitchTextColor = Color(0xFFA86600);
+      ActiveColor = Color(0xFFA86600);
+      PackageStatusStr = "未取包裹";
+      switchStatusStr = "未取";
+    }
+    if(missioncode == "picked"){ //已取
+      ThemeColor = Color(0xFFBFFFBA);
+      TextColor = Color(0xFF0EA800);
+      SwitchTextColor = Color(0xFF0EA800);
+      ActiveColor = Color(0xFF0EA800);
+      PackageStatusStr = "已取包裹";
+      switchStatusStr = "已取";
+    }
+    if(missioncode == "undelivery"){ //未送
       ThemeColor = Color(0xFFFADBD8);
       TextColor = Color(0xFFFF3838);
+      SwitchTextColor = Color(0xFFFF3838);
+      ActiveColor = Color(0xFFFF3838);
+      PackageStatusStr = "未送包裹";
+      switchStatusStr = "未送";
+    }
+    if(missioncode == "deliveried"){ //已送
+      ThemeColor = Color(0xFFBADDFF);
+      TextColor = Color(0xFF00488F);
+      SwitchTextColor = Color(0xFF00488F);
+      ActiveColor = Color(0xFF00488F);
+      PackageStatusStr = "已送包裹";
+      switchStatusStr = "已送";
     }
 
     return MaterialApp(
@@ -101,19 +134,19 @@ class _PackageDetails2State extends State<PackageDetails2>
                                         ),
                                       ),
                                     ),
-                                    Padding(padding: EdgeInsets.zero,child: Text(switchStatus,style: TextStyle(color: Color(0xFFFF3838)),),),
+                                    Padding(padding: EdgeInsets.zero,child: Text(switchStatusStr,style: TextStyle(color: SwitchTextColor),),),
                                     Padding(
                                       padding:
                                           const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                       child: Switch(
-                                        activeColor: Colors.red,
+                                        activeColor: ActiveColor,
                                           value: deliveryflag,
                                           onChanged: (value) {
                                             if (deliveryflag == false) {
                                               //只有false的時候才有功能
                                               setState(() {
                                                 deliveryflag = !deliveryflag;
-                                                switchStatus = "已送";
+                                                switchStatusStr = "已送";
                                                 // punchStartStr = DateFormat('HH:mm').format(DateTime.now()).toString();
                                               });
                                             }
@@ -228,6 +261,7 @@ class _PackageDetails2State extends State<PackageDetails2>
                                 child: Column(
                                   children: [
                                     Text("設計上傳資料1"),
+                                    DoImagePicker(),
                                   ],
                                 ),
                               ),
@@ -252,6 +286,11 @@ class _PackageDetails2State extends State<PackageDetails2>
                                     Text('船名 WAN HAI 275 航次 V-N179'),
                                     Text('結關日 2/24'),
                                     Text('禮勝報關 0426581388'),
+                                    Container( //發現這樣可以不被Column的crossu影響
+                                      alignment: Alignment.bottomRight,
+                                      child: FloatingActionButton(onPressed: (){},backgroundColor: ActiveColor,child: Icon(Icons.add),),
+                                    ),
+
                                   ],
                                 ),
                               ),
@@ -284,7 +323,8 @@ class _PackageDetails2State extends State<PackageDetails2>
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    FloatingActionButton(onPressed: (){}, child: Icon(Icons.camera_alt),backgroundColor: Color(0xFFFF3838),),
+                                    FloatingActionButton(onPressed: (){}, child: Icon(Icons.photo_library),backgroundColor: ActiveColor,),
+                                    FloatingActionButton(onPressed: (){}, child: Icon(Icons.camera_alt),backgroundColor: ActiveColor,),
                                   ],
                                 ),
                               ),

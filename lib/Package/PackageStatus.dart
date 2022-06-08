@@ -326,18 +326,66 @@ class _PackageStatusState extends State<PackageStatus> {
                   flex: 6, //因為增加bottonNavigationBar 從7降低為6
                   child: ListView(
                     children: [
-                      Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                            builder: (BuildContext context) => new PackageDetails2(missioncode: 'unpick',))),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          color: Color(0xFFFFF0D2),
+                          shadowColor: Colors.blueAccent,
+                          child: Visibility(
+                            visible: unpick,
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Row(
+                                // mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Container(
+                                    height: 50.0,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20.0, 0.0, 50.0, 0.0),
+                                    child: Text('09:00'),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20.0, 0.0, 70.0, 0.0),
+                                    child: Text('千多/水上'),
+                                  ),
+                                  Flexible(
+                                    child: Container(
+                                      // padding: EdgeInsets.only(right: 13.0),
+                                      child: Text(
+                                        '台中#00001', //我注意到＃井字號後面會直接強制省略
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          // ListTile(
+                          //   title: Text('未取'),
+                          // ),
                         ),
-                        color: Color(0xFFFFF0D2),
-                        shadowColor: Colors.blueAccent,
-                        child: Visibility(
-                          visible: unpick,
-                          child: GestureDetector(
-                            onTap: () {},
+                      ),
+
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                            builder: (BuildContext context) => new PackageDetails2(missioncode: 'picked',))),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          color: Color(0xFFDEFFD2),
+                          shadowColor: Colors.blueAccent,
+                          child: Visibility(
+                            visible: picked,
                             child: Row(
-                              // mainAxisSize: MainAxisSize.max,
                               children: [
                                 Container(
                                   height: 50.0,
@@ -345,7 +393,7 @@ class _PackageStatusState extends State<PackageStatus> {
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(
                                       20.0, 0.0, 50.0, 0.0),
-                                  child: Text('09:00'),
+                                  child: Text('10:00'),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(
@@ -356,7 +404,7 @@ class _PackageStatusState extends State<PackageStatus> {
                                   child: Container(
                                     // padding: EdgeInsets.only(right: 13.0),
                                     child: Text(
-                                      '台中#00001', //我注意到＃井字號後面會直接強制省略
+                                      '台中#00002', //我注意到＃井字號後面會直接強制省略
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
@@ -365,46 +413,8 @@ class _PackageStatusState extends State<PackageStatus> {
                             ),
                           ),
                         ),
-                        // ListTile(
-                        //   title: Text('未取'),
-                        // ),
                       ),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        color: Color(0xFFDEFFD2),
-                        shadowColor: Colors.blueAccent,
-                        child: Visibility(
-                          visible: picked,
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 50.0,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    20.0, 0.0, 50.0, 0.0),
-                                child: Text('10:00'),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    20.0, 0.0, 70.0, 0.0),
-                                child: Text('千多/水上'),
-                              ),
-                              Flexible(
-                                child: Container(
-                                  // padding: EdgeInsets.only(right: 13.0),
-                                  child: Text(
-                                    '台中#00002', //我注意到＃井字號後面會直接強制省略
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+
                       GestureDetector(
                         onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                             builder: (BuildContext context) => new PackageDetails2(missioncode: 'undelivery',))),
@@ -445,42 +455,53 @@ class _PackageStatusState extends State<PackageStatus> {
                           ),
                         ),
                       ),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        color: Color(0xFFD2EBFF),
-                        shadowColor: Colors.blueAccent,
-                        child: Visibility(
-                          visible: deliveried,
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 50.0,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    20.0, 0.0, 50.0, 0.0),
-                                child: Text('11:00'),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    20.0, 0.0, 70.0, 0.0),
-                                child: Text('千多/水上'),
-                              ),
-                              Flexible(
-                                child: Container(
-                                  // padding: EdgeInsets.only(right: 13.0),
-                                  child: Text(
-                                    '台中#00004', //我注意到＃井字號後面會直接強制省略
-                                    overflow: TextOverflow.ellipsis,
+
+
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                            builder: (BuildContext context) => new PackageDetails2(missioncode: 'deliveried',))),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          color: Color(0xFFD2EBFF),
+                          shadowColor: Colors.blueAccent,
+                          child: Visibility(
+                            visible: deliveried,
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 50.0,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      20.0, 0.0, 50.0, 0.0),
+                                  child: Text('11:00'),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      20.0, 0.0, 70.0, 0.0),
+                                  child: Text('千多/水上'),
+                                ),
+                                Flexible(
+                                  child: Container(
+                                    // padding: EdgeInsets.only(right: 13.0),
+                                    child: Text(
+                                      '台中#00004', //我注意到＃井字號後面會直接強制省略
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
+                      // GestureDetector(
+                      //   onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                      //       builder: (BuildContext context) => new PackageDetails2(missioncode: 'undelivery',))),
+                      // ),
+                      //
                       Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),

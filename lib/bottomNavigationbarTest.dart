@@ -6,6 +6,7 @@ import 'bottomNavigationbarTest.dart';
 import 'FrontPage.dart';
 import 'Package/PackageDetails.dart';
 import 'SearchBarTest.dart';
+import 'DoImagePicker.dart';
 
 void main() => runApp(const MyApp());
 
@@ -45,9 +46,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     ),
     KustomSearchBar(
     ),
-    Text(
-      'Index 5: Text',
-      style: optionStyle,
+    DoImagePicker(
     ),
   ];
 
