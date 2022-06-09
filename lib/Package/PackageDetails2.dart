@@ -6,12 +6,14 @@ import 'package:intl/intl.dart';
 import '../DoImagePicker.dart';
 
 class PackageDetails2 extends StatefulWidget {
-  const PackageDetails2({Key? key, required this.missioncode}) : super(key: key);
+  const PackageDetails2({Key? key, required this.missioncode})
+      : super(key: key);
 
   final String missioncode;
 
   @override
-  _PackageDetails2State createState() => _PackageDetails2State(missioncode: this.missioncode);
+  _PackageDetails2State createState() =>
+      _PackageDetails2State(missioncode: this.missioncode);
 }
 
 class _PackageDetails2State extends State<PackageDetails2>
@@ -23,6 +25,7 @@ class _PackageDetails2State extends State<PackageDetails2>
   late TabController _tabController;
 
   final String missioncode;
+
   _PackageDetails2State({required this.missioncode});
 
   final _scaffoldKey =
@@ -47,8 +50,8 @@ class _PackageDetails2State extends State<PackageDetails2>
     var SwitchTextColor = Color(0xFFFFFFFF); //Switch文字顏色
     var ActiveColor = Color(0xFFFFFFFF); //Switch啟動顏色
 
-
-    if(missioncode == "unpick"){ //未取
+    if (missioncode == "unpick") {
+      //未取
       ThemeColor = Color(0xFFFCD69B);
       TextColor = Color(0xFFA86600);
       SwitchTextColor = Color(0xFFA86600);
@@ -56,7 +59,8 @@ class _PackageDetails2State extends State<PackageDetails2>
       PackageStatusStr = "未取包裹";
       switchStatusStr = "未取";
     }
-    if(missioncode == "picked"){ //已取
+    if (missioncode == "picked") {
+      //已取
       ThemeColor = Color(0xFFBFFFBA);
       TextColor = Color(0xFF0EA800);
       SwitchTextColor = Color(0xFF0EA800);
@@ -64,7 +68,8 @@ class _PackageDetails2State extends State<PackageDetails2>
       PackageStatusStr = "已取包裹";
       switchStatusStr = "已取";
     }
-    if(missioncode == "undelivery"){ //未送
+    if (missioncode == "undelivery") {
+      //未送
       ThemeColor = Color(0xFFFADBD8);
       TextColor = Color(0xFFFF3838);
       SwitchTextColor = Color(0xFFFF3838);
@@ -72,7 +77,8 @@ class _PackageDetails2State extends State<PackageDetails2>
       PackageStatusStr = "未送包裹";
       switchStatusStr = "未送";
     }
-    if(missioncode == "deliveried"){ //已送
+    if (missioncode == "deliveried") {
+      //已送
       ThemeColor = Color(0xFFBADDFF);
       TextColor = Color(0xFF00488F);
       SwitchTextColor = Color(0xFF00488F);
@@ -90,7 +96,6 @@ class _PackageDetails2State extends State<PackageDetails2>
         body: SafeArea(
           child: Container(
             child: Column(
-
               children: [
                 Expanded(
                   flex: 3,
@@ -134,12 +139,19 @@ class _PackageDetails2State extends State<PackageDetails2>
                                         ),
                                       ),
                                     ),
-                                    Padding(padding: EdgeInsets.zero,child: Text(switchStatusStr,style: TextStyle(color: SwitchTextColor),),),
+                                    Padding(
+                                      padding: EdgeInsets.zero,
+                                      child: Text(
+                                        switchStatusStr,
+                                        style:
+                                            TextStyle(color: SwitchTextColor),
+                                      ),
+                                    ),
                                     Padding(
                                       padding:
                                           const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                       child: Switch(
-                                        activeColor: ActiveColor,
+                                          activeColor: ActiveColor,
                                           value: deliveryflag,
                                           onChanged: (value) {
                                             if (deliveryflag == false) {
@@ -157,9 +169,12 @@ class _PackageDetails2State extends State<PackageDetails2>
                                 Text(
                                   MissionDetailStr,
                                   overflow: TextOverflow.fade,
-                                  style: TextStyle(fontSize: 10,color: TextColor,),
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: TextColor,
+                                  ),
                                 ),
-                               ],
+                              ],
                             ),
                           ],
                         ),
@@ -207,15 +222,20 @@ class _PackageDetails2State extends State<PackageDetails2>
                 ), //全畫面的方法
                 Expanded(
                   flex: 6, //因為增加bottonNavigationBar 從7降低為6
-                  child: Padding( //製造詳細資料內縮的效果，所以之前的設計方法比較費力
+                  child: Padding(
+                    //製造詳細資料內縮的效果，所以之前的設計方法比較費力
                     padding: const EdgeInsets.all(30),
                     child: ListView(
                       children: [
                         Container(
                           // alignment: Alignment.centerLeft,
                           // color: Colors.yellowAccent,
-                          height: 200,
+                          // height: 600,
                           width: 50,
+                          constraints: BoxConstraints(
+                            minHeight: 200,
+                            maxHeight: 500,
+                          ),
                           child: TabBarView(
                             controller: _tabController,
                             children: <Widget>[
@@ -223,7 +243,12 @@ class _PackageDetails2State extends State<PackageDetails2>
                                 // mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("取件資料",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                                  Text(
+                                    "取件資料",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                   HorizontalLine(),
                                   Text('千多/水上_0526'),
                                   Text('嘉義水上鄉ＯＯＯＯ'),
@@ -232,6 +257,28 @@ class _PackageDetails2State extends State<PackageDetails2>
                                   Text('HAWB'),
                                   Text('S/Ｏ 3969'),
                                   Text('系統提示 司機（ＯＯＯ）尚未取'),
+                                  SizedBox(height: 20,),
+                                  Text(
+                                    "備註",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  HorizontalLine(),
+                                  Text('貨主 博立'),
+                                  Text('SO 3969'),
+                                  Text('船名 WAN HAI 275 航次 V-N179'),
+                                  Text('結關日 2/24'),
+                                  Text('禮勝報關 0426581388'),
+                                  Container(
+                                    //發現這樣可以不被Column的crossu影響
+                                    alignment: Alignment.bottomRight,
+                                    child: FloatingActionButton(
+                                      onPressed: () {},
+                                      backgroundColor: ActiveColor,
+                                      child: Icon(Icons.add),
+                                    ),
+                                  ),
                                 ],
                               ),
                               Center(
@@ -261,76 +308,88 @@ class _PackageDetails2State extends State<PackageDetails2>
                                 child: Column(
                                   children: [
                                     Text("設計上傳資料1"),
-                                    DoImagePicker(),
+                                    // DoImagePicker(),
+                                    // FloatingActionButton(onPressed: (){}, child: Icon(Icons.photo_library),backgroundColor: ActiveColor,),
+                                    // FloatingActionButton(onPressed: (){}, child: Icon(Icons.camera_alt),backgroundColor: ActiveColor,),
                                   ],
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        Container(
-                          // color: Colors.teal,
-                          height: 300,
-                          width: 50,
-                          child: TabBarView(
-                            controller: _tabController,
-                            children: <Widget>[
-                              Center(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("備註",style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-                                    HorizontalLine(),
-                                    Text('貨主 博立'),
-                                    Text('SO 3969'),
-                                    Text('船名 WAN HAI 275 航次 V-N179'),
-                                    Text('結關日 2/24'),
-                                    Text('禮勝報關 0426581388'),
-                                    Container( //發現這樣可以不被Column的crossu影響
-                                      alignment: Alignment.bottomRight,
-                                      child: FloatingActionButton(onPressed: (){},backgroundColor: ActiveColor,child: Icon(Icons.add),),
-                                    ),
-
-                                  ],
-                                ),
-                              ),
-                              Center(
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Container(),
-                                    ),
-                                    Expanded(
-                                      flex: 8,
-                                      child: Column(
-                                        children: [
-                                          Text("備註"),
-                                          HorizontalLine(),
-                                          Text('data'),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 1,
-                                      child: Container(),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.bottomRight,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    FloatingActionButton(onPressed: (){}, child: Icon(Icons.photo_library),backgroundColor: ActiveColor,),
-                                    FloatingActionButton(onPressed: (){}, child: Icon(Icons.camera_alt),backgroundColor: ActiveColor,),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Container(
+                        //   // color: Colors.teal,
+                        //   height: 300,
+                        //   width: 50,
+                        //   child: TabBarView(
+                        //     controller: _tabController,
+                        //     children: <Widget>[
+                        //       Center(
+                        //         child: Column(
+                        //           crossAxisAlignment: CrossAxisAlignment.start,
+                        //           children: [
+                        //             Text(
+                        //               "備註",
+                        //               style: TextStyle(
+                        //                   fontSize: 18,
+                        //                   fontWeight: FontWeight.bold),
+                        //             ),
+                        //             HorizontalLine(),
+                        //             Text('貨主 博立'),
+                        //             Text('SO 3969'),
+                        //             Text('船名 WAN HAI 275 航次 V-N179'),
+                        //             Text('結關日 2/24'),
+                        //             Text('禮勝報關 0426581388'),
+                        //             Container(
+                        //               //發現這樣可以不被Column的crossu影響
+                        //               alignment: Alignment.bottomRight,
+                        //               child: FloatingActionButton(
+                        //                 onPressed: () {},
+                        //                 backgroundColor: ActiveColor,
+                        //                 child: Icon(Icons.add),
+                        //               ),
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //       Center(
+                        //         child: Row(
+                        //           children: [
+                        //             Expanded(
+                        //               flex: 1,
+                        //               child: Container(),
+                        //             ),
+                        //             Expanded(
+                        //               flex: 8,
+                        //               child: Column(
+                        //                 children: [
+                        //                   Text("備註"),
+                        //                   HorizontalLine(),
+                        //                   Text('data'),
+                        //                 ],
+                        //               ),
+                        //             ),
+                        //             Expanded(
+                        //               flex: 1,
+                        //               child: Container(),
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //       Container(
+                        //         alignment: Alignment.bottomRight,
+                        //         child: Column(
+                        //           crossAxisAlignment: CrossAxisAlignment.end,
+                        //           children: [
+                        //             SizedBox(
+                        //               height: 20,
+                        //             ),
+                        //           ],
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

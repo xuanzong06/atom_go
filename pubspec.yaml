@@ -40,6 +40,7 @@ dependencies:
   launch_review: ^3.0.1 #跳轉到商店
   package_info_plus: ^1.4.2 #檢查app版本代號
   image_picker: ^0.8.5+3 #獲得手機圖片
+  google_maps_flutter: ^2.1.7 #googlemap
 
 dev_dependencies:
   flutter_test:

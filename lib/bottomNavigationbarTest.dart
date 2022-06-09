@@ -1,3 +1,6 @@
+import 'package:atom_go/PersonalPage.dart';
+import 'package:atom_go/Test/NonePage.dart';
+
 import 'Package/PackageStatus.dart';
 import 'package:flutter/material.dart';
 
@@ -40,13 +43,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     ),
     PackageStatus(
     ),
-    PackageDetails(
+    NonePage(
     ),
-    MyStatefulWidget2(
+    NonePage(
     ),
-    KustomSearchBar(
+    NonePage(
     ),
-    DoImagePicker(
+    PersonalPage(
     ),
   ];
 
