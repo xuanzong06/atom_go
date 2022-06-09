@@ -10,7 +10,8 @@ class PersonalPage extends StatefulWidget {
   _PersonalPageState createState() => _PersonalPageState();
 }
 
-class _PersonalPageState extends State<PersonalPage> with TickerProviderStateMixin{
+class _PersonalPageState extends State<PersonalPage>
+    with TickerProviderStateMixin {
   final _scaffoldKey =
       GlobalKey<ScaffoldState>(); //自定義IconButton.menu 需要這個值 1/3
 
@@ -199,20 +200,30 @@ class _PersonalPageState extends State<PersonalPage> with TickerProviderStateMix
                                       fontWeight: FontWeight.bold),
                                 ),
                                 HorizontalLine(),
-                                Row(children: [
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(40,0,20,0),
-                                    child: Text('日期'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(10,0,20,0),
-                                    child: Text('上班打卡'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(10,0,20,0),
-                                    child: Text('下班打卡'),
-                                  ),
-                                ],),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          40, 0, 20, 0),
+                                      child: Text('日期'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 0, 20, 0),
+                                      child: Text('上班打卡'),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 0, 20, 0),
+                                      child: Text('下班打卡'),
+                                    ),
+                                  ],
+                                ),
+                                // ListView(
+                                //   children: [
+                                //     Text('1    09:00    09:00'),
+                                //   ],
+                                // ),
                               ],
                             ),
                             Center(
