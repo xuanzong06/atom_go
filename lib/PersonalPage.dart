@@ -219,17 +219,44 @@ class _PersonalPageState extends State<PersonalPage>
                                     ),
                                   ],
                                 ),
-                                // ListView(
-                                //   children: [
-                                //     Text('1    09:00    09:00'),
-                                //   ],
-                                // ),
+                                Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          47, 0, 20, 0),
+                                      child: Column(children: [
+                                        Text('01'),
+                                        Text('02'),
+                                        Text('03'),
+                                      ],),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          20, 0, 20, 0),
+                                      child: Column(children: [
+                                        Text('AM08:58'),
+                                        Text('AM08:52'),
+                                        Text('AM09:00'),
+                                      ],),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 0, 20, 0),
+                                      child: Column(children: [
+                                        Text('PM05:58'),
+                                        Text('PM05:52'),
+                                        Text('PM06:00'),
+                                      ],),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                             Center(
                               child: Column(
                                 children: [
-                                  Text("設計上傳資料1"),
+                                  Text("薪資尚未產生"),
+                                  Text("隔月5號顯示"),
                                   // DoImagePicker(),
                                   // FloatingActionButton(onPressed: (){}, child: Icon(Icons.photo_library),backgroundColor: ActiveColor,),
                                   // FloatingActionButton(onPressed: (){}, child: Icon(Icons.camera_alt),backgroundColor: ActiveColor,),

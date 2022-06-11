@@ -10,6 +10,7 @@ import 'FrontPage.dart';
 import 'Package/PackageDetails.dart';
 import 'SearchBarTest.dart';
 import 'DoImagePicker.dart';
+import 'MapService/KustomMap.dart';
 
 void main() => runApp(const MyApp());
 
@@ -38,7 +39,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static  List<Widget> _widgetOptions = <Widget>[
     FrontPage(
     ),
     PackageStatus(
@@ -47,7 +48,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     ),
     NonePage(
     ),
-    NonePage(
+    KustomMap(
     ),
     PersonalPage(
     ),

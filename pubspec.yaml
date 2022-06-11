@@ -41,6 +41,8 @@ dependencies:
   package_info_plus: ^1.4.2 #檢查app版本代號
   image_picker: ^0.8.5+3 #獲得手機圖片
   google_maps_flutter: ^2.1.7 #googlemap
+  location: ^4.4.0 #取得位置
+  decimal: ^2.2.0 #decimal引用，內建沒有
 
 dev_dependencies:
   flutter_test:
