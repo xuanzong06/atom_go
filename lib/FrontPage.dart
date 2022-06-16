@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'GeneralWidget/HorizontalLine.dart';
 import 'Kustom/KustomDrawer.dart';
+import 'KustomWidget/TopNavigator.dart';
 
 class FrontPage extends StatefulWidget {
   const FrontPage({Key? key}) : super(key: key);
@@ -37,6 +38,7 @@ class _FrontPageState extends State<FrontPage> {
                     color: Colors.grey[300],
                     child: Column(
                       children: [
+                        // TopNavigator(), //開始著手將全部的畫面一個一個Widget化
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           //使最上排能夠分配距離

@@ -1,3 +1,4 @@
+import 'package:atom_go/KustomWidget/TopNavigator.dart';
 import 'package:atom_go/PersonalPage.dart';
 import 'package:atom_go/Test/NonePage.dart';
 
@@ -46,7 +47,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     ),
     NonePage(
     ),
-    NonePage(
+    TopNavigator(
     ),
     KustomMap(
     ),

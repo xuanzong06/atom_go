@@ -9,18 +9,6 @@ import 'package:http/http.dart' as http;
 import 'package:decimal/decimal.dart';
 import 'dart:math';
 
-// void main() => runApp(MyApp());
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Google Maps Demo',
-//       home: KustomMap(),
-//     );
-//   }
-// }
-
 class KustomMap extends StatefulWidget {
   @override
   State<KustomMap> createState() => KustomMapState();
@@ -51,7 +39,6 @@ class KustomMapState extends State<KustomMap> {
 
   TextEditingController _drivername = TextEditingController();
   TextEditingController _carnumber = TextEditingController();
-
 
   // I am going to make moveable cameraposition
   // step1 create googlemap controller
@@ -146,146 +133,167 @@ class KustomMapState extends State<KustomMap> {
     );
   }
 
-  // void _setPolyline(List<PointLatLng> points) {
-  //   final String polylineIdVal = 'polygon_$_polylineIdCounter';
-  //   _polylineIdCounter++;
-  //
-  //   _polylines.add(
-  //     Polyline(
-  //       polylineId: PolylineId(polylineIdVal),
-  //       width: 2,
-  //       color: Colors.blue,
-  //       points: points
-  //           .map(
-  //             (point) => LatLng(point.latitude, point.longitude),
-  //       )
-  //           .toList(),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Google Maps'),
-      ),
-      body: Container(child: Column(
-        children: <Widget>[
-          Container(
-            child: TextField(
-              controller: _drivername,
-              decoration: InputDecoration(
-                border: UnderlineInputBorder(),
-                hintText: 'Driver_Name',
-              ),
-            ),
-          ),
-          Container(
-            child: TextField(
-              controller: _carnumber,
-              decoration: InputDecoration(
-                border: UnderlineInputBorder(),
-                hintText: 'Car_number',
-              ),
-            ),
-          ),
-          // Row(
-          //   children: <Widget>[
-          //
-          //
-          //     // Expanded(
-          //     //   child: Column(
-          //     //     children: [
-          //     //       TextFormField(
-          //     //         controller: _originController,
-          //     //         decoration: InputDecoration(hintText: 'Origin'),
-          //     //         onChanged: (value) {
-          //     //           print(value);
-          //     //         },
-          //     //       ),
-          //     //       TextFormField(
-          //     //         controller: _destinationController,
-          //     //         decoration: InputDecoration(hintText: 'Destination'),
-          //     //         onChanged: (value) {
-          //     //           print(value);
-          //     //         },
-          //     //       ),
-          //     //     ],
-          //     //   ),
-          //     // ),
-          //     // IconButton(
-          //     //   onPressed: () async {
-          //     //     // var directions = await LocationService().getDirections(
-          //     //     //   _originController.text,
-          //     //     //   _destinationController.text,
-          //     //     // );
-          //     //     // _goToPlace(
-          //     //     //   directions['start_location']['lat'],
-          //     //     //   directions['start_location']['lng'],
-          //     //     //   directions['bounds_ne'],
-          //     //     //   directions['bounds_sw'],
-          //     //     // );
-          //     //     _getCurrentPosition(
-          //     //         _locationData!.latitude!, _locationData!.longitude!);
-          //     //     // _setPolyline(directions['polyline_decoded']);
-          //     //   },
-          //     //   icon: Icon(Icons.search),
-          //     // ),
-          //   ],
-          // ),
-          Container(
-            height: 150,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom:8.0),
-              child: Expanded(
-                child: GoogleMap(
-                  myLocationEnabled: true,
-                  //20220425 add
-                  mapType: MapType.normal,
-                  // 改變地圖樣式
-                  markers: _markers,
-                  polygons: _polygons,
-                  polylines: _polylines,
-                  initialCameraPosition: _kGooglePlex,
-                  // initialCameraPosition: CameraPosition(target: _initialcameraposition),
-                  onMapCreated: (GoogleMapController controller) {
-                    _controller.complete(controller);
-                  },
-                  onTap: (point) {
-                    setState(() {
-                      polygonsLatLngs.add(point);
-                      _setPolygon();
-                    });
-                  },
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 3,
+              child: Container(
+                color: Colors.grey[300],
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //使最上排能夠分配距離
+                      children: [
+                        SafeArea(
+                          child: Row(
+                            children: [
+                              // IconButton(
+                              //   onPressed: () =>
+                              //       _scaffoldKey.currentState?.openDrawer(),
+                              //   //自定義IconButton.menu 需要這個值 3/3
+                              //   icon: Icon(Icons.menu),
+                              // ),
+                              // Text(punchStartStr),
+                              // Switch(
+                              //     value: punchStart,
+                              //     onChanged: (value) {
+                              //       if(punchStart == false){ //只有false的時候才有功能
+                              //         setState(() {
+                              //           punchStart = !punchStart;
+                              //           punchStartStr = DateFormat('HH:mm').format(DateTime.now()).toString();
+                              //         });
+                              //       }
+                              //     }),
+                              // Text(punchEndStr),
+                              // Switch(
+                              //     value: punchEnd,
+                              //     onChanged: (value) {
+                              //       if(punchEnd == false){ //只有false的時候才有功能
+                              //         setState(() {
+                              //           punchEnd = !punchEnd;
+                              //           punchEndStr = DateFormat('HH:mm').format(DateTime.now()).toString();
+                              //         });
+                              //       }
+                              //     }),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.more_horiz),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          //在Row下使用Expanded 可以達到左右
+                          flex: 5,
+                          child: Column(
+                            children: [
+                              Text(
+                                '定位查詢',
+                                style: TextStyle(
+                                  fontSize: 30.0,
+                                ),
+                              ),
+                              Text('車號：AZ-5523'),
+                              Row(children: [
+                                Text('經度:004563'),
+                                Text('緯度:651348'),
+                              ],),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 5,
+                          child: Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(right: 0.0),
+                                width: 100,
+                                height: 100,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  // color: Colors.teal,
+                                  image: DecorationImage(
+                                    image: AssetImage('assets/liu.png'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.circular(1000.0),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
-          ),
-          OutlinedButton(
-            onPressed: () {
-              _updatePosition();
-              // print(_drivername.text+"_____"+_carnumber.text);
-            },
-            child: Text('Click Me'),
-          ),
-          OutlinedButton(
-            onPressed: () {
-              _updatePosition();
-            },
-            child: Text('Update Position'),
-          ),
-        ],
-      ),),
+            Expanded(
+              flex: 4,
+              child: Container(
+                height: 200,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Expanded(
+                    child: GoogleMap(
+                      myLocationEnabled: true,
+                      //20220425 add
+                      mapType: MapType.normal,
+                      // 改變地圖樣式
+                      markers: _markers,
+                      polygons: _polygons,
+                      polylines: _polylines,
+                      initialCameraPosition: _kGooglePlex,
+                      // initialCameraPosition: CameraPosition(target: _initialcameraposition),
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                      },
+                      onTap: (point) {
+                        setState(() {
+                          polygonsLatLngs.add(point);
+                          _setPolygon();
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            // OutlinedButton(
+            //   onPressed: () {
+            //     _updatePosition();
+            //     // print(_drivername.text+"_____"+_carnumber.text);
+            //   },
+            //   child: Text('Click Me'),
+            // ),
+            // OutlinedButton(
+            //   onPressed: () {
+            //     _updatePosition();
+            //   },
+            //   child: Text('Update Position'),
+            // ),
+          ],
+        ),
+      ),
     );
   }
 
   Future<void> _goToPlace(
-      double lat,
-      double lng,
-      Map<String, dynamic> boundsNe,
-      Map<String, dynamic> boundsSw,
-      ) async {
+    double lat,
+    double lng,
+    Map<String, dynamic> boundsNe,
+    Map<String, dynamic> boundsSw,
+  ) async {
     // final lat = place['geometry']['location']['lat'];
     // final lng = place['geometry']['location']['lng'];
     final GoogleMapController controller = await _controller.future;
@@ -338,16 +346,26 @@ class KustomMapState extends State<KustomMap> {
     int locateID = random.nextInt(9999);
     int boxID = random.nextInt(9999);
 
-
     print(sqlFlag.toString());
-    if(sqlFlag){ //初始值是true
+    if (sqlFlag) {
+      //初始值是true
       _driverID = driverID;
     }
 
     //LatLng(_locationData!.latitude!, _locationData!.longitude!)
-    print(_driverID.toString() +" || "+ _drivername.text+" || "+ _carnumber.text+" || "+ _locationData!.latitude!.toString()+" || "+ _locationData!.longitude!.toString()+" || "+sqlFlag.toString());
-    updatePosition(_driverID, _drivername.text, _carnumber.text, _locationData!.latitude!,
-        _locationData!.longitude!)
+    print(_driverID.toString() +
+        " || " +
+        _drivername.text +
+        " || " +
+        _carnumber.text +
+        " || " +
+        _locationData!.latitude!.toString() +
+        " || " +
+        _locationData!.longitude!.toString() +
+        " || " +
+        sqlFlag.toString());
+    updatePosition(_driverID, _drivername.text, _carnumber.text,
+            _locationData!.latitude!, _locationData!.longitude!)
         .then((result) {
       print(result);
       if ("success" == result) {
@@ -368,12 +386,12 @@ class KustomMapState extends State<KustomMap> {
       map['lng'] = lng.toString();
       map['sqlFlag'] = sqlFlag.toString();
       final response = await http.post(
-        // Uri.parse('http://192.168.31.167:8888/driverlocate.php'),
+          // Uri.parse('http://192.168.31.167:8888/driverlocate.php'),
           Uri.parse('http://shyecheng.new.n9s.com/driverlocate.php'),
           body: map);
       print('addEmployee Response: ${response.body}');
       if (200 == response.statusCode) {
-        if(sqlFlag){
+        if (sqlFlag) {
           sqlFlag = false;
         }
         return response.body;
