@@ -1,7 +1,9 @@
+import 'package:atom_go/KustomWidget/TopNavigator2.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'GeneralWidget/HorizontalLine.dart';
 import 'Kustom/KustomDrawer.dart';
+import 'KustomWidget/TopNavigator.dart';
 
 class PersonalPage extends StatefulWidget {
   const PersonalPage({Key? key}) : super(key: key);
@@ -46,7 +48,9 @@ class _PersonalPageState extends State<PersonalPage>
                         children: [
                           SafeArea(
                             child: Row(
+
                               children: [
+                                // TopNavigator(),
                                 IconButton(
                                   onPressed: () =>
                                       _scaffoldKey.currentState?.openDrawer(),

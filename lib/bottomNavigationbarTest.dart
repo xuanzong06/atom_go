@@ -12,8 +12,14 @@ import 'Package/PackageDetails.dart';
 import 'SearchBarTest.dart';
 import 'DoImagePicker.dart';
 import 'MapService/KustomMap.dart';
+import 'package:flutter/rendering.dart';
 
-void main() => runApp(const MyApp());
+// void main() => runApp(const MyApp());
+
+void main() {
+  debugPaintSizeEnabled = true;
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -23,6 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: _title,
       home: MyStatefulWidget(),
     );
@@ -40,19 +47,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static  List<Widget> _widgetOptions = <Widget>[
-    FrontPage(
-    ),
-    PackageStatus(
-    ),
-    NonePage(
-    ),
-    TopNavigator(
-    ),
-    KustomMap(
-    ),
-    PersonalPage(
-    ),
+  static List<Widget> _widgetOptions = <Widget>[
+    FrontPage(),
+    PackageStatus(),
+    NonePage(),
+    NonePage(),
+    KustomMap(),
+    PersonalPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -63,47 +64,52 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('BottomNavigationBar Sample'),
-      // ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, //大於三個以上的時候，要增加這個屬性才會正常顯示
-        showSelectedLabels: false, //這兩個屬性可以隱藏
-        showUnselectedLabels: false, //
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.apps),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Business',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.campaign),
-            label: 'School',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.access_time),
-            label: 'Test',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.pin_drop
+    return MaterialApp(
+      home: Scaffold(
+        // appBar: AppBar(
+        //   title: const Text('BottomNavigationBar Sample'),
+        // ),
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: _widgetOptions,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          //大於三個以上的時候，要增加這個屬性才會正常顯示
+          showSelectedLabels: false,
+          //這兩個屬性可以隱藏
+          showUnselectedLabels: false,
+          //
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.apps),
+              label: 'Home',
             ),
-            label: 'profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
+            BottomNavigationBarItem(
+              icon: Icon(Icons.list),
+              label: 'Business',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.campaign),
+              label: 'School',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.access_time),
+              label: 'Test',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.pin_drop),
+              label: 'profile',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'profile',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }
