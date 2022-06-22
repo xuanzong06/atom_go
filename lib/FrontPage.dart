@@ -38,51 +38,52 @@ class _FrontPageState extends State<FrontPage> {
                     color: Colors.grey[300],
                     child: Column(
                       children: [
-                        // TopNavigator(), //開始著手將全部的畫面一個一個Widget化
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          //使最上排能夠分配距離
-                          children: [
-                            SafeArea(
-                              child: Row(
-                                children: [
-                                  IconButton(
-                                    onPressed: () =>
-                                        _scaffoldKey.currentState?.openDrawer(),
-                                    //自定義IconButton.menu 需要這個值 3/3
-                                    icon: Icon(Icons.menu),
-                                  ),
-                                  Text(punchStartStr),
-                                  Switch(
-                                      value: punchStart,
-                                      onChanged: (value) {
-                                        if(punchStart == false){ //只有false的時候才有功能
-                                          setState(() {
-                                            punchStart = !punchStart;
-                                            punchStartStr = DateFormat('HH:mm').format(DateTime.now()).toString();
-                                          });
-                                        }
-                                      }),
-                                  Text(punchEndStr),
-                                  Switch(
-                                      value: punchEnd,
-                                      onChanged: (value) {
-                                        if(punchEnd == false){ //只有false的時候才有功能
-                                          setState(() {
-                                            punchEnd = !punchEnd;
-                                            punchEndStr = DateFormat('HH:mm').format(DateTime.now()).toString();
-                                          });
-                                        }
-                                      }),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.more_horiz),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                        TopNavigator(), //開始著手將全部的畫面一個一個Widget化
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        //   //使最上排能夠分配距離
+                        //   children: [
+                        //     SafeArea(
+                        //       child:
+                        //       Row(
+                        //         children: [
+                        //           IconButton(
+                        //             onPressed: () =>
+                        //                 _scaffoldKey.currentState?.openDrawer(),
+                        //             //自定義IconButton.menu 需要這個值 3/3
+                        //             icon: Icon(Icons.menu),
+                        //           ),
+                        //           Text(punchStartStr),
+                        //           Switch(
+                        //               value: punchStart,
+                        //               onChanged: (value) {
+                        //                 if(punchStart == false){ //只有false的時候才有功能
+                        //                   setState(() {
+                        //                     punchStart = !punchStart;
+                        //                     punchStartStr = DateFormat('HH:mm').format(DateTime.now()).toString();
+                        //                   });
+                        //                 }
+                        //               }),
+                        //           Text(punchEndStr),
+                        //           Switch(
+                        //               value: punchEnd,
+                        //               onChanged: (value) {
+                        //                 if(punchEnd == false){ //只有false的時候才有功能
+                        //                   setState(() {
+                        //                     punchEnd = !punchEnd;
+                        //                     punchEndStr = DateFormat('HH:mm').format(DateTime.now()).toString();
+                        //                   });
+                        //                 }
+                        //               }),
+                        //           IconButton(
+                        //             onPressed: () {},
+                        //             icon: Icon(Icons.more_horiz),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [

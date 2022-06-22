@@ -10,14 +10,16 @@ class TopNavigator2 extends StatefulWidget {
 class _TopNavigator2State extends State<TopNavigator2> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
-      child: Row(
-        children: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
-          Spacer(),
-          IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz)),
-        ],
+    return SafeArea(
+      child: Container(
+        // color: Colors.amber,
+        child: Row(
+          children: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+            Spacer(),
+            IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz)),
+          ],
+        ),
       ),
     );
   }

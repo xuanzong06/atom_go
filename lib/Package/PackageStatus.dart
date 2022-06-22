@@ -331,7 +331,7 @@ class _PackageStatusState extends State<PackageStatus> {
                             builder: (BuildContext context) => new PackageDetails2(missioncode: 'unpick',))),
                         child: Card(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
+                            // borderRadius: BorderRadius.circular(50),
                           ),
                           color: Color(0xFFFFF0D2),
                           shadowColor: Colors.blueAccent,
@@ -379,7 +379,7 @@ class _PackageStatusState extends State<PackageStatus> {
                             builder: (BuildContext context) => new PackageDetails2(missioncode: 'picked',))),
                         child: Card(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
+                            // borderRadius: BorderRadius.circular(50),
                           ),
                           color: Color(0xFFDEFFD2),
                           shadowColor: Colors.blueAccent,
@@ -420,7 +420,7 @@ class _PackageStatusState extends State<PackageStatus> {
                             builder: (BuildContext context) => new PackageDetails2(missioncode: 'undelivery',))),
                         child: Card(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
+                            // borderRadius: BorderRadius.circular(50),
                           ),
                           color: Color(0xFFF05F5F), //#F05F5F
                           shadowColor: Colors.blueAccent,
@@ -462,7 +462,7 @@ class _PackageStatusState extends State<PackageStatus> {
                             builder: (BuildContext context) => new PackageDetails2(missioncode: 'deliveried',))),
                         child: Card(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
+                            // borderRadius: BorderRadius.circular(50),
                           ),
                           color: Color(0xFFD2EBFF),
                           shadowColor: Colors.blueAccent,
@@ -504,7 +504,7 @@ class _PackageStatusState extends State<PackageStatus> {
                       //
                       Card(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
+                          // borderRadius: BorderRadius.circular(50),
                         ),
                         color: Color(0xFFA7A7A7), //#A7A7A7
                         shadowColor: Colors.blueAccent,

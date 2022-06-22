@@ -42,34 +42,35 @@ class _PersonalPageState extends State<PersonalPage>
                   color: Colors.grey[300],
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        //使最上排能夠分配距離
-                        children: [
-                          SafeArea(
-                            child: Row(
-
-                              children: [
-                                // TopNavigator(),
-                                IconButton(
-                                  onPressed: () =>
-                                      _scaffoldKey.currentState?.openDrawer(),
-                                  //自定義IconButton.menu 需要這個值 3/3
-                                  icon: Icon(Icons.menu),
-                                ),
-                                Container(
-                                  //發現這樣可以不被Column的crossu影響
-                                  alignment: Alignment.bottomRight,
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.more_horiz),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                      TopNavigator2(),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.start,
+                      //   //使最上排能夠分配距離
+                      //   children: [
+                      //     SafeArea(
+                      //       child: Row(
+                      //
+                      //         children: [
+                      //           // TopNavigator(),
+                      //           IconButton(
+                      //             onPressed: () =>
+                      //                 _scaffoldKey.currentState?.openDrawer(),
+                      //             //自定義IconButton.menu 需要這個值 3/3
+                      //             icon: Icon(Icons.menu),
+                      //           ),
+                      //           Container(
+                      //             //發現這樣可以不被Column的crossu影響
+                      //             alignment: Alignment.bottomRight,
+                      //             child: IconButton(
+                      //               onPressed: () {},
+                      //               icon: Icon(Icons.more_horiz),
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
